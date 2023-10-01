@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DataAccess.EF.Batch>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@Html.ActionLink("Create New", "Create", "batches", null, new { @class = "btn btn-primary" , style = "margin-bottom: 30px;" } )
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.First().BatchName)</th>
+        <th>@Html.DisplayNameFor(model => model.First().StartDate)</th>
+        <th>@Html.DisplayNameFor(model => model.First().EndDate)</th>
+         <th>@Html.DisplayNameFor(model => model.First().Duration)</th>
+        <th>@Html.DisplayNameFor(model => model.First().HoursTaken)</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.BatchName</td>
+            <td>@item.StartDate</td>
+            <td>@item.EndDate</td>
+            <td>@item.Duration</td>
+            <td>@item.HoursTaken</td>
+            <td>
+                <!-- Edit action link -->
+            @Html.ActionLink("Edit", "Edit","Batches",new { id = item.BatchId }, new { @class = "btn btn-primary" })
+                
+
+                <!-- Delete action link (can be replaced with a button if needed) -->
+            @Html.ActionLink("Delete", "Delete", new { id = item.BatchId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+</table>
