@@ -88,8 +88,10 @@ namespace TrainingManagementMVC.Controllers
         // POST: BatchesController1/Edit/5
          [HttpPost]
           [ValidateAntiForgeryToken]
-          public  async Task<IActionResult> Edit(int id, [Bind("BatchName,StartDate,TentativeEndDate,EndDate,Fees,FeesPaid,Duration,HoursTaken,Status,Details,Remarks")] Batch batch)
+          public  async Task<IActionResult> Edit(int id, [Bind("BatchName,StartDate,TentativeEndDate,EndDate,Fees,FeesPaid,Duration,HoursTaken,Status,Details,Remarks")] Batch _batch)
           {
+            var batch = await trainingManagement2Context.FindAsync<Batch>(id);
+
 
             if (batch.BatchId != batch.BatchId)
             {
@@ -102,7 +104,14 @@ namespace TrainingManagementMVC.Controllers
               {
                   try
                   {
-                      trainingManagement2Context.Update(batch);
+                    batch.BatchName = _batch.BatchName;
+                    batch.StartDate = _batch.StartDate;
+                    batch.TentativeEndDate = _batch.TentativeEndDate;
+                    batch.EndDate = _batch.EndDate;
+                    batch.Duration = _batch.Duration;
+                    batch.HoursTaken = _batch.HoursTaken;
+
+                    trainingManagement2Context.Update(batch);
 
                       await trainingManagement2Context.SaveChangesAsync();
                   }
