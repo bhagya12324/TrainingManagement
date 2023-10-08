@@ -35,7 +35,7 @@ namespace TrainingManagementMVC.Controllers
         // GET: BatchesController1/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(trainingManagement2Context.Batches.FindAsync(id) );
         }
 
         // GET: BatchesController1/Create

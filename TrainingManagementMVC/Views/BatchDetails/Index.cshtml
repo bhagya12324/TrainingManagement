@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DataAccess.EF.BatchDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+@Html.ActionLink("Create New", "Create", "batchDetails", null, new { @class = "btn btn-primary" , style = "margin-bottom: 30px;" } )
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table table-bodered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoursTaken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TopicsTaken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Batch)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoursTaken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TopicsTaken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Batch.BatchName)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit","BatchDetails",new { id = item.BatchDetailId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Details", "Details","BatchDetails",new { id = item.BatchDetailId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "Delete","BatchDetails",new { id = item.BatchDetailId }, new { @class = "btn btn-danger" })
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

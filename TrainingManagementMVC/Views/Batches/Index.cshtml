@@ -30,7 +30,9 @@
 
                 <!-- Delete action link (can be replaced with a button if needed) -->
             @Html.ActionLink("Delete", "Delete", new { id = item.BatchId }, new { @class = "btn btn-danger" })
-            </td>
+                @Html.ActionLink("Details", "Details", new { id = item.BatchId }, new { @class = "btn btn-primary" })
+
+        </td>
         </tr>
     }
 </table>
